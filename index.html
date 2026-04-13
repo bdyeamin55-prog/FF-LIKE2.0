@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>NOVA | Free Fire Like Booster — Quantum Glow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none; /* optional, for sleek feel */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #03050f;
+            color: #eef5ff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ========== HYPERSPACE GLOW BACKGROUND ========== */
+        .quantum-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .plasma-ball {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.5;
+            animation: driftQuantum 20s infinite alternate ease-in-out;
+        }
+
+        .plasma-1 {
+            width: 70vw;
+            height: 70vw;
+            background: radial-gradient(circle, rgba(0, 200, 255, 0.45), rgba(139, 92, 246, 0.2));
+            top: -30%;
+            left: -20%;
+        }
+
+        .plasma-2 {
+            width: 65vw;
+            height: 65vw;
+            background: radial-gradient(circle, rgba(0, 230, 180, 0.4), rgba(6, 182, 212, 0.15));
+            bottom: -25%;
+            right: -15%;
+            animation-delay: 5s;
+        }
+
+        .plasma-3 {
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.35), rgba(236, 72, 153, 0.12));
+            top: 40%;
+            left: 30%;
+            animation-duration: 25s;
+            filter: blur(160px);
+        }
+
+        @keyframes driftQuantum {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(6%, 8%) scale(1.15); }
+        }
+
+        /* noise texture for depth */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.028'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 28px 20px 50px;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* ========== HEADER ========== */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .neon-logo {
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 15, 25, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 44px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 1px solid rgba(0, 255, 210, 0.6);
+            box-shadow: 0 0 35px rgba(0, 255, 200, 0.4), inset 0 1px 1px rgba(255,255,255,0.1);
+            transition: 0.3s;
+            animation: floatLogo 3s infinite alternate;
+        }
+
+        .neon-logo::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 48px;
+            background: linear-gradient(135deg, #0ff, #a855f7, #0ff);
+            opacity: 0.5;
+            filter: blur(20px);
+            z-index: -1;
+        }
+
+        .logo-emoji {
+            font-size: 3.6rem;
+            filter: drop-shadow(0 0 14px #00e0ff);
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes floatLogo {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-8px); }
+        }
+
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 2px cyan; }
+            50% { text-shadow: 0 0 25px #0ff, 0 0 10px #ff66cc; }
+            100% { text-shadow: 0 0 2px cyan; }
+        }
+
+        h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, #b0f0ff, #d8b4fe, #6ee7b7);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 18px rgba(0,255,200,0.3);
+        }
+
+        .cyber-tagline {
+            font-size: 0.7rem;
+            letter-spacing: 3.5px;
+            color: #6b8fc9;
+            text-transform: uppercase;
+            margin-top: 6px;
+            font-weight: 400;
+        }
+
+        /* status capsule */
+        .status-container {
+            display: flex;
+            justify-content: center;
+            margin: 18px 0 30px;
+        }
+
+        .status-glow {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(2, 12, 22, 0.7);
+            backdrop-filter: blur(18px);
+            padding: 8px 32px;
+            border-radius: 60px;
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.25);
+            font-family: 'Orbitron', monospace;
+            font-size: 0.75rem;
+        }
+
+        .pulse-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            transition: 0.2s;
+            box-shadow: 0 0 12px currentColor;
+        }
+
+        .pulse-dot.active { background: #2ecc71; box-shadow: 0 0 14px #2ecc71; }
+        .pulse-dot.verifying { background: #f39c12; box-shadow: 0 0 14px #f39c12; animation: blinkFast 0.9s infinite; }
+        .pulse-dot.inactive { background: #e74c3c; box-shadow: 0 0 10px #e74c3c; }
+
+        .token-chip {
+            background: rgba(0, 255, 200, 0.12);
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: #7ee7ff;
+            letter-spacing: 1px;
+        }
+
+        @keyframes blinkFast {
+            0% { opacity: 0.5; transform: scale(0.9);}
+            100% { opacity: 1; transform: scale(1.2);}
+        }
+
+        /* GLASS CARD SUPREME */
+        .quantum-card {
+            background: rgba(3, 10, 24, 0.65);
+            backdrop-filter: blur(22px);
+            border-radius: 2.5rem;
+            border: 1px solid rgba(0, 255, 210, 0.3);
+            padding: 34px 30px;
+            transition: all 0.3s;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .quantum-card:hover {
+            border-color: rgba(0, 245, 255, 0.7);
+            box-shadow: 0 20px 45px rgba(0, 210, 255, 0.2);
+        }
+
+        /* labels */
+        .glow-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #9bbdf0;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* uid input */
+        .uid-field {
+            position: relative;
+            margin-bottom: 34px;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.3rem;
+            opacity: 0.85;
+            z-index: 2;
+        }
+
+        .uid-input {
+            width: 100%;
+            padding: 18px 20px 18px 58px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1.5px solid rgba(0, 230, 250, 0.35);
+            border-radius: 34px;
+            color: #f0fcff;
+            font-family: 'Orbitron', monospace;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            outline: none;
+            transition: 0.25s;
+            font-weight: 500;
+        }
+
+        .uid-input:focus {
+            border-color: #0ff;
+            box-shadow: 0 0 32px rgba(0, 255, 255, 0.35), inset 0 0 8px rgba(0,255,200,0.2);
+            background: rgba(0, 0, 0, 0.85);
+        }
+
+        .uid-input::placeholder {
+            font-family: 'Inter', sans-serif;
+            letter-spacing: normal;
+            color: #3a5a82;
+            font-size: 0.8rem;
+        }
+
+        /* server badge 3d */
+        .server-3d {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: linear-gradient(115deg, rgba(0, 180, 200, 0.15), rgba(80, 0, 255, 0.08));
+            border-radius: 48px;
+            padding: 12px 26px;
+            margin-bottom: 36px;
+            border: 1px solid rgba(0, 255, 180, 0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        .flag-3d {
+            font-size: 2.2rem;
+            filter: drop-shadow(0 0 8px cyan);
+        }
+
+        .server-name-glow {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #88f7ff;
+            letter-spacing: 2px;
+        }
+
+        .badge-region {
+            margin-left: auto;
+            font-size: 0.7rem;
+            background: rgba(0,255,200,0.2);
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        /* NUCLEAR BUTTON */
+        .hyper-button {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 48px;
+            background: linear-gradient(105deg, #0d8fd6, #c084fc, #0ecf8a);
+            background-size: 200% auto;
+            font-family: 'Orbitron', monospace;
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 4px;
+            color: white;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 28px rgba(0, 160, 250, 0.6), 0 0 14px #0ff8;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hyper-button:hover {
+            transform: scale(1.01);
+            box-shadow: 0 12px 38px rgba(0, 200, 255, 0.8);
+        }
+
+        .hyper-button:active {
+            transform: scale(0.98);
+        }
+
+        .hyper-button:disabled {
+            opacity: 0.6;
+            filter: grayscale(0.1);
+            transform: none;
+            cursor: not-allowed;
+        }
+
+        /* result panel */
+        .result-panel {
+            margin-top: 32px;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(26px);
+            border-radius: 32px;
+            border: 1px solid rgba(0, 255, 200, 0.35);
+            padding: 26px;
+            transition: 0.3s;
+        }
+
+        .result-panel.error {
+            border-color: #f87171;
+            box-shadow: 0 0 20px rgba(248,113,113,0.3);
+        }
+
+        .profile-head {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-bottom: 28px;
+            border-bottom: 1px dashed rgba(0,255,200,0.25);
+            padding-bottom: 18px;
+        }
+
+        .avatar-neon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(145deg, #0a1f30, #010814);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.4rem;
+            border: 1px solid #0ff;
+            box-shadow: 0 0 20px #0ff6;
+        }
+
+        .avatar-neon.ok {
+            border-color: #2ecc71;
+            box-shadow: 0 0 24px #2ecc71;
+        }
+
+        .player-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            color: #f0fcff;
+        }
+
+        .player-uid-text {
+            font-size: 0.7rem;
+            color: #9ab9e8;
+            letter-spacing: 1px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .stat-block {
+            background: rgba(0, 20, 40, 0.75);
+            border-radius: 24px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 200, 0.15);
+        }
+
+        .stat-block .stat-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #9cb8e6;
+        }
+
+        .stat-block .stat-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #f0f5ff;
+        }
+
+        .stat-number.green {
+            color: #2ecc71;
+            text-shadow: 0 0 8px #2ecc71;
+        }
+
+        .stat-highlight {
+            grid-column: 1/-1;
+            background: linear-gradient(115deg, rgba(0, 210, 200, 0.15), rgba(139, 92, 246, 0.12));
+            border-color: #0ff;
+        }
+
+        .stat-highlight .stat-number {
+            font-size: 2rem;
+            color: #6ee7ff;
+        }
+
+        .footer-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 28px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 12px 22px;
+            border-radius: 60px;
+            font-size: 0.7rem;
+            font-family: monospace;
+            color: #8aa4cf;
+            backdrop-filter: blur(8px);
+        }
+
+        .footer-credit {
+            text-align: center;
+            margin-top: 42px;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: #2a456b;
+            font-weight: 500;
+        }
+
+        button .spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spinLinear 0.7s linear infinite;
+            margin-right: 12px;
+            vertical-align: middle;
+        }
+
+        @keyframes spinLinear { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+<div class="quantum-field">
+    <div class="plasma-ball plasma-1"></div>
+    <div class="plasma-ball plasma-2"></div>
+    <div class="plasma-ball plasma-3"></div>
+</div>
+
+<div class="container">
+    <div class="hero-section">
+        <div class="neon-logo">
+            <div class="logo-emoji">⚡🌀</div>
+        </div>
+        <h1>LIKE SENDER</h1>
+        <div class="cyber-tagline">✦ QUANTUM BOOST ENGINE ✦</div>
+    </div>
+
+    <div class="status-container">
+        <div class="status-glow" id="statusPill">
+            <span class="pulse-dot" id="statusDot"></span>
+            <span id="statusText">Initializing</span>
+            <span class="token-chip" id="tokenCount">—</span>
+        </div>
+    </div>
+
+    <div class="quantum-card">
+        <div class="uid-field">
+            <div class="glow-label">
+                <span>🎯</span> TARGET UID
+            </div>
+            <span class="input-icon">🆔</span>
+            <input class="uid-input" type="text" id="uidInput" placeholder="Enter Free Fire UID" maxlength="20" inputmode="numeric">
+        </div>
+
+        <div>
+            <div class="glow-label">🌐 SERVER NODE</div>
+            <div class="server-3d">
+                <span class="flag-3d">🇧🇩</span>
+                <span class="server-name-glow">BANGLADESH | BD</span>
+                <span class="badge-region">PRIME</span>
+            </div>
+        </div>
+
+        <button class="hyper-button" id="sendBtn" onclick="sendLike()">
+            ⚡ ACTIVATE BOOST ⚡
+        </button>
+    </div>
+
+    <div class="result-panel" id="resultCard" style="display: none;"></div>
+
+    <div class="footer-meta" id="tokenInfo">
+        <span>⟳ REFRESH: —</span>
+        <span>⏩ NEXT: —</span>
+    </div>
+
+    <div class="footer-credit">POWERED BY RIZER XENON | HYPERDRIVE ACTIVE</div>
+</div>
+
+<script>
+    const SERVER = 'BD';
+
+    // fetch token status with elegant UI
+    async function fetchStatus() {
+        try {
+            const resp = await fetch('/token_status');
+            const data = await resp.json();
+            const dot = document.getElementById('statusDot');
+            const txt = document.getElementById('statusText');
+            const cntSpan = document.getElementById('tokenCount');
+            
+            if (data.checking_mode) {
+                dot.className = 'pulse-dot verifying';
+                txt.innerText = 'VERIFYING TOKENS';
+            } else if (data.total_tokens > 0) {
+                dot.className = 'pulse-dot active';
+                txt.innerText = 'ONLINE • READY';
+            } else {
+                dot.className = 'pulse-dot inactive';
+                txt.innerText = 'OFFLINE MODE';
+            }
+            cntSpan.innerText = data.total_tokens + ' TOKENS';
+            
+            const metaDiv = document.getElementById('tokenInfo');
+            if (metaDiv) {
+                metaDiv.innerHTML = `<span>🕒 LAST REFRESH: ${data.last_refresh || '—'}</span>
+                                      <span>⚡ NEXT: ${data.next_refresh || '—'}</span>`;
+            }
+        } catch (e) {
+            document.getElementById('statusDot').className = 'pulse-dot inactive';
+            document.getElementById('statusText').innerText = 'OFFLINE';
+            document.getElementById('tokenCount').innerText = '0 TOKENS';
+        }
+    }
+
+    fetchStatus();
+    setInterval(fetchStatus, 15000);
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    async function sendLike() {
+        const uidInput = document.getElementById('uidInput');
+        let uid = uidInput.value.trim();
+        const btn = document.getElementById('sendBtn');
+        const resultDiv = document.getElementById('resultCard');
+        
+        if (!uid) {
+            alert("⚠️ Please enter a valid UID.");
+            return;
+        }
+        if (!/^\d+$/.test(uid)) {
+            alert("❌ UID must contain only numbers.");
+            return;
+        }
+        if (uid.length < 5) {
+            alert("⚠️ UID seems too short. Double-check your Free Fire ID.");
+            return;
+        }
+        
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span>BOOST INJECTION';
+        resultDiv.style.display = 'none';
+        
+        try {
+            const apiUrl = `/like?uid=${encodeURIComponent(uid)}&server_name=${SERVER}`;
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            
+            if (data.error) {
+                resultDiv.className = 'result-panel error';
+                resultDiv.innerHTML = `
+                    <div class="profile-head">
+                        <div class="avatar-neon" style="border-color:#f87171;">⚠️</div>
+                        <div>
+                            <div class="player-name">Boost Failed</div>
+                            <div class="player-uid-text">${escapeHtml(data.error)}</div>
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-block"><div class="stat-label">STATUS</div><div class="stat-number">ERROR</div></div>
+                    </div>
+                `;
+                resultDiv.style.display = 'block';
+            } else {
+                const before = Number(data.LikesbeforeCommand) || 0;
+                const after = Number(data.LikesafterCommand) || 0;
+                const given = Number(data.LikesGivenByAPI) || 0;
+                const playerName = data.PlayerNickname || 'ELITE GUARDIAN';
+                const playerUID = data.UID || uid;
+                const isSuccess = data.status === 1;
+                
+                resultDiv.className = 'result-panel';
+                resultDiv.innerHTML = `
+                    <div class="profile-head">
+                        <div class="avatar-neon ${isSuccess ? 'ok' : ''}">🏆</div>
+                        <div>
+                            <div class="player-name">${escapeHtml(playerName)}</div>
+                            <div class="player-uid-text">UID: ${escapeHtml(String(playerUID))}</div>
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-block"><div class="stat-label">BEFORE LIKES</div><div class="stat-number">${before.toLocaleString()}</div></div>
+                        <div class="stat-block"><div class="stat-label">AFTER LIKES</div><div class="stat-number green">${after.toLocaleString()}</div></div>
+                        <div class="stat-block stat-highlight"><div class="stat-label">🔥 LIKES DELIVERED 🔥</div><div class="stat-number">+${given.toLocaleString()}</div></div>
+                    </div>
+                `;
+                resultDiv.style.display = 'block';
+            }
+        } catch (err) {
+            console.error(err);
+            resultDiv.className = 'result-panel error';
+            resultDiv.innerHTML = `
+                <div class="profile-head">
+                    <div class="avatar-neon">💀</div>
+                    <div>
+                        <div class="player-name">Connection Interrupt</div>
+                        <div class="player-uid-text">Unable to reach boost core. Check network.</div>
+                    </div>
+                </div>
+            `;
+            resultDiv.style.display = 'block';
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '⚡ ACTIVATE BOOST ⚡';
+        }
+    }
+    
+    // restrict input to numbers
+    const uidField = document.getElementById('uidInput');
+    uidField.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+    uidField.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') sendLike();
+    });
+</script>
+</body>
+</html>
